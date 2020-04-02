@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  min-height: 700px;
-  background-color: #290571;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700px;
+
 `;
