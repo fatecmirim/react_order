@@ -15,10 +15,20 @@ export function loginFailure() {
     type: '@auth/LOGIN_FAILURE',
   };
 }
-export function createUserRequest(name, email, password, type, cpf) {
+export function createUserRequest(data) {
   return {
     type: '@auth/CREATE_USER_REQUEST',
-    payload: { name, email, password, type, cpf },
+    payload: { data },
+  };
+}
+export function createUserSuccess() {
+  return {
+    type: '@auth/CREATE_USER_SUCCESS',
+  };
+}
+export function createUserFailure() {
+  return {
+    type: '@auth/CREATE_USER_FAILURE',
   };
 }
 export function signOut() {

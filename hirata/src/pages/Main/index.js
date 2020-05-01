@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { MdAddShoppingCart } from 'react-icons/md';
 import { ProductList } from './styles';
 import api from '../../services/api';
 import { formatPrice } from '../../util/format';
-import { MdAddShoppingCart } from 'react-icons/md';
 import * as CartActions from '../../store/modules/cart/actions';
 
 export default function Main() {

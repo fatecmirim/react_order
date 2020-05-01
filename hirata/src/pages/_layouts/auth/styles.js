@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  padding-top: 70px;
+  padding-top: 30px;
   width: 100%;
   max-width: 360px;
   text-align: center;
@@ -49,7 +49,7 @@ export const Content = styled.div`
       font-weight: bold;
     }
     button {
-      margin: 5px 0 0;
+      margin: 15px 0 0;
       height: 44px;
       background: #3b9eff;
       font-weight: bold;
@@ -58,6 +58,7 @@ export const Content = styled.div`
       border-radius: 6px;
       font-size: 18px;
       transition: background 0.2;
+
       &:hover {
         background: ${darken(0.03, '#3b9eff')};
       }
@@ -65,9 +66,9 @@ export const Content = styled.div`
     a {
       color: black;
       padding-top: 35px;
-
       font-size: 30px;
       font-weight: 900;
+      text-decoration: none;
     }
     img {
       width: 360px;
