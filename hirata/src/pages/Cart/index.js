@@ -1,16 +1,15 @@
 import React from 'react';
-import { Container, ProductTable, Total } from './styles';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   MdRemoveCircleOutline,
   MdAddCircleOutline,
   MdDelete,
 } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, ProductTable, Total } from './styles';
 import { formatPrice } from '../../util/format';
 import * as CartActions from '../../store/modules/cart/actions';
 import api from '../../services/api';
-import history from '../../services/history';
-import { toast } from 'react-toastify';
 
 export default function Cart() {
   const total = useSelector(state =>
@@ -59,7 +58,7 @@ export default function Cart() {
       <ProductTable>
         <thead>
           <tr>
-            <th></th>
+            <th />
             <th>PRODUTO</th>
             <th>QTD</th>
             <th>SUBTOTAL</th>

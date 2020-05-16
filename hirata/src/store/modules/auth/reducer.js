@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   token: null,
   signed: false,
   loading: false,
+  admin: false,
 };
 export default function auth(state = INITIAL_STATE, action) {
   return produce(state, draft => {
@@ -16,6 +17,7 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.token = action.payload.token;
         draft.signed = true;
         draft.loading = false;
+        draft.admin = action.payload.admin;
         break;
       }
       case '@auth/LOGIN_FAILURE': {
@@ -32,10 +34,12 @@ export default function auth(state = INITIAL_STATE, action) {
       }
       case '@auth/CREATE_USER_FAILURE': {
         draft.loading = false;
+        break;
       }
       case '@auth/SIGN_OUT': {
         draft.token = null;
         draft.signed = false;
+        draft.admin = false;
         break;
       }
       default:

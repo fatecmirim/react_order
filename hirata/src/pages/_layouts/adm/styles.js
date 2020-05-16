@@ -5,5 +5,4 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   height: 700px;
-
 `;

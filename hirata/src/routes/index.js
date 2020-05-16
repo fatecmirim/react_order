@@ -6,6 +6,7 @@ import Login from '../pages/Login/index';
 import Main from '../pages/Main/index';
 import Cart from '../pages/Cart/index';
 import Register from '../pages/Register/index';
+import RegisterProduct from '../pages/Products/Register';
 
 export default function Routes() {
   return (
@@ -14,6 +15,12 @@ export default function Routes() {
       <Route path="/register" component={Register} />
       <Route path="/main" exact component={Main} isPrivate />
       <Route path="/cart" exact component={Cart} isPrivate />
+      <Route
+        path="/register-product"
+        exact
+        component={RegisterProduct}
+        isPrivate
+      />
     </Switch>
   );
 }
