@@ -7,6 +7,8 @@ import Main from '../pages/Main/index';
 import Cart from '../pages/Cart/index';
 import Register from '../pages/Register/index';
 import RegisterProduct from '../pages/Products/Register';
+import EditProduct from '../pages/Products/Edit';
+import Orders from '../pages/Order';
 
 export default function Routes() {
   return (
@@ -21,6 +23,8 @@ export default function Routes() {
         component={RegisterProduct}
         isPrivate
       />
+      <Route path="/edit-product/:id" exact component={EditProduct} isPrivate />
+      <Route path="/orders" exact component={Orders} isPrivate />
     </Switch>
   );
 }

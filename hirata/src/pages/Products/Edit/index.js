@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { Content } from './styles';
 import upload from '../../../assests/img/upload.png';
 import api from '../../../services/api';
+import { formatPrice } from '../../../util/format';
 
-function RegisterProduct() {
+function EditProduct(props) {
   const { register, handleSubmit } = useForm();
   const [idPhoto, setIdPhoto] = useState();
   const [urlPhoto, setUrlPhoto] = useState();
+  const [products, setProducts] = useState([]);
+  const { id } = props.match.params;
+
   const loading = false;
+
+  useEffect(() => {
+    async function loadProduct() {
+      const response = await api.get(`/api/products/${id}`);
+      setProducts(response.data);
+    }
+    loadProduct();
+  }, []);
+
   async function onSubmit(data) {
     const { name } = data;
     const kg = parseFloat(data.kg, 1);
@@ -17,7 +30,7 @@ function RegisterProduct() {
     const stock = parseInt(data.stock, 0);
     const photoId = idPhoto;
     try {
-      await api.post('/api/products', {
+      await api.patch(`/api/products/${id}`, {
         name,
         price,
         kg,
@@ -42,7 +55,7 @@ function RegisterProduct() {
     <Content>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="photo">
-          <img src={!urlPhoto ? upload : urlPhoto} alt="upload" />
+          <img src={!urlPhoto ? products.photoUrl : urlPhoto} alt="upload" />
           <input
             type="file"
             id="photo"
@@ -54,23 +67,15 @@ function RegisterProduct() {
           ref={register}
           name="name"
           type="text"
-          placeholder="Digite o nome do produto"
+          defaultValue={products.name}
         />
-        <input
-          ref={register}
-          name="price"
-          placeholder="Digite o preço do produto"
-        />
-        <input
-          ref={register}
-          name="kg"
-          placeholder="Digite a quantidade de KG"
-        />
+        <input ref={register} name="price" defaultValue={products.price} />
+        <input ref={register} name="kg" defaultValue={products.kg} />
         <input
           ref={register}
           name="stock"
           type="number"
-          placeholder="Digite a quantidade em estoque"
+          defaultValue={products.stock}
         />
         <button type="submit">{loading ? 'Carregando...' : 'Cadastrar'}</button>
       </form>
@@ -78,4 +83,4 @@ function RegisterProduct() {
   );
 }
 
-export default RegisterProduct;
+export default EditProduct;

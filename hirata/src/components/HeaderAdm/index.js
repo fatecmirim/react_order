@@ -11,7 +11,7 @@ export default function HeaderAdm() {
             <Link to="/">
               <li>PRODUTOS</li>
             </Link>
-            <Link to="/pedidos">
+            <Link to="/orders">
               <li>PEDIDOS</li>
             </Link>
             <Link to="/lista-usuarios">
