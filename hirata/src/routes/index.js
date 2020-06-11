@@ -23,7 +23,12 @@ export default function Routes() {
         component={RegisterProduct}
         isPrivate
       />
-      <Route path="/edit-product/:id" exact component={EditProduct} isPrivate />
+      <Route
+        path="/edit-product/:productId"
+        exact
+        component={EditProduct}
+        isPrivate
+      />
       <Route path="/orders" exact component={Orders} isPrivate />
     </Switch>
   );

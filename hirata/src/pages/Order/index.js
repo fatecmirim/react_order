@@ -27,6 +27,8 @@ export default function Orders() {
     loadItens();
   }, []);
 
+  console.log(itens);
+
   return (
     <Container>
       <List>
@@ -41,6 +43,7 @@ export default function Orders() {
               <th>Produtos</th>
               <th>QTD</th>
             </tr>
+            <th>Aceitar</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +61,9 @@ export default function Orders() {
                   <td>{product.quantity}</td>
                 </tr>
               ))}
+              <td>
+                <button type="button">Aceitar</button>
+              </td>
             </tr>
           ))}
         </tbody>

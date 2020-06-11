@@ -2,22 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { Content } from './styles';
-import upload from '../../../assests/img/upload.png';
 import api from '../../../services/api';
-import { formatPrice } from '../../../util/format';
 
 function EditProduct(props) {
   const { register, handleSubmit } = useForm();
   const [idPhoto, setIdPhoto] = useState();
   const [urlPhoto, setUrlPhoto] = useState();
   const [products, setProducts] = useState([]);
-  const { id } = props.match.params;
+  const { productId } = props.match.params;
 
   const loading = false;
 
   useEffect(() => {
     async function loadProduct() {
-      const response = await api.get(`/api/products/${id}`);
+      const response = await api.get(`/api/products/${productId}`);
       setProducts(response.data);
     }
     loadProduct();
@@ -30,7 +28,7 @@ function EditProduct(props) {
     const stock = parseInt(data.stock, 0);
     const photoId = idPhoto;
     try {
-      await api.patch(`/api/products/${id}`, {
+      await api.patch(`/api/products/${productId}`, {
         name,
         price,
         kg,
@@ -46,10 +44,22 @@ function EditProduct(props) {
     const data = new FormData();
     data.append('photo', e.target.files[0]);
     const response = await api.post('/api/photos', data);
-    const { id, url } = response.data.photo;
+    const idAntigo = parseInt(products.photoId, 0);
+
+    const { id, url, path } = response.data.photo;
+    try {
+      await api.put(`/api/photos/${idAntigo}`, {
+        path,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
     setIdPhoto(id);
     setUrlPhoto(url);
   }
+
+  
 
   return (
     <Content>

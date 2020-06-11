@@ -12,19 +12,6 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
   }
-  button {
-    background: #7159c1;
-    color: #fff;
-    border: 0;
-    border-radius: 4px;
-    padding: 12px 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background 0.2s;
-    &:hover {
-      background: ${darken(0.03, '#7159c1')};
-    }
-  }
 `;
 export const List = styled.table`
   width: 100%;
@@ -68,9 +55,17 @@ export const List = styled.table`
     }
   }
   button {
-    background: none;
+    height: 44px;
+    background: #3b9eff;
+    font-weight: bold;
+    color: #fff;
     border: 0;
-    padding: 10px;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: background 0.2;
+    &:hover {
+      background: ${darken(0.03, '#3b9eff')};
+    }
   }
 `;
 export const Total = styled.div`
