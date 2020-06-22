@@ -9,6 +9,8 @@ import Register from '../pages/Register/index';
 import RegisterProduct from '../pages/Products/Register';
 import EditProduct from '../pages/Products/Edit';
 import Orders from '../pages/Order';
+import EditProfile from '../pages/Perfil/Edit';
+import UserList from '../pages/User/List';
 
 export default function Routes() {
   return (
@@ -30,6 +32,8 @@ export default function Routes() {
         isPrivate
       />
       <Route path="/orders" exact component={Orders} isPrivate />
+      <Route path="/edit-profile" exact component={EditProfile} isPrivate />
+      <Route path="/list-users" exact component={UserList} isPrivate />
     </Switch>
   );
 }

@@ -21,6 +21,7 @@ export function createUserRequest(data) {
     payload: { data },
   };
 }
+
 export function createUserSuccess() {
   return {
     type: '@auth/CREATE_USER_SUCCESS',

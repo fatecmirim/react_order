@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,12 +10,11 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding-top: 30px;
   width: 100%;
   max-width: 360px;
   text-align: center;
   form {
-    padding-top: 120px;
+    padding-top: 80px;
     display: flex;
     flex-direction: column;
     input {
@@ -63,7 +62,6 @@ export const Content = styled.div`
         background: ${darken(0.03, '#3b9eff')};
       }
     }
-
     a {
       color: black;
       padding-top: 35px;
@@ -74,38 +72,5 @@ export const Content = styled.div`
     img {
       width: 360px;
     }
-    label {
-      cursor: pointer;
-      &:hover {
-        opacity: 0.7;
-      }
-      img {
-        height: 120px;
-        width: 120px;
-        border-radius: 20%;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        background: #eee;
-      }
-      input {
-        display: none;
-      }
-    }
-  }
-`;
-export const Delete = styled.button`
-  width: 100%;
-  max-width: 360px;
-  margin: 15px 0 0;
-  height: 44px;
-  background: red;
-  font-weight: bold;
-  color: #fff;
-  border: 0;
-  border-radius: 6px;
-  font-size: 18px;
-  transition: background 0.2;
-
-  &:hover {
-    background: ${darken(0.03, 'red')};
   }
 `;

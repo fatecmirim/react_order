@@ -1,4 +1,5 @@
 import produce from 'immer';
+
 const INITIAL_STATE = {
   customerId: null,
   admin: false,
@@ -16,7 +17,7 @@ export default function user(state = INITIAL_STATE, action) {
         draft.admin = false;
         break;
       }
-      default: 
+      default:
     }
   });
 }

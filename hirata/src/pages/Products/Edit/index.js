@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { Content } from './styles';
+import { Content, Delete } from './styles';
 import api from '../../../services/api';
+import history from '../../../services/history';
 
 function EditProduct(props) {
   const { register, handleSubmit } = useForm();
@@ -40,26 +41,36 @@ function EditProduct(props) {
       toast.error('Falha no cadastro, revise os dados');
     }
   }
+
   async function handleChange(e) {
     const data = new FormData();
     data.append('photo', e.target.files[0]);
     const response = await api.post('/api/photos', data);
     const idAntigo = parseInt(products.photoId, 0);
 
-    const { id, url, path } = response.data.photo;
+    const { id, url } = response.data.photo;
+
     try {
       await api.put(`/api/photos/${idAntigo}`, {
-        path,
+        url,
       });
     } catch (err) {
       console.log(err);
     }
-
     setIdPhoto(id);
     setUrlPhoto(url);
   }
 
-  
+  async function handleDeleteProduct(id) {
+    try {
+      await api.delete(`/api/products/${id}`);
+      toast.success('Produto excluido com sucess');
+      history.push('/Main');
+    } catch (err) {
+      toast.error('Erro na exclusão do produto');
+      history.push('/Main');
+    }
+  }
 
   return (
     <Content>
@@ -87,8 +98,11 @@ function EditProduct(props) {
           type="number"
           defaultValue={products.stock}
         />
-        <button type="submit">{loading ? 'Carregando...' : 'Cadastrar'}</button>
+        <button type="submit">{loading ? 'Carregando...' : 'Editar'}</button>
       </form>
+      <Delete type="button" onClick={() => handleDeleteProduct(products.id)}>
+        Deletar
+      </Delete>
     </Content>
   );
 }

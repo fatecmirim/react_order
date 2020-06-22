@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Container, List } from './styles';
 import api from '../../services/api';
 import { formatPrice } from '../../util/format';
+import history from '../../services/history';
 
 export default function Orders() {
   const [itens, setItens] = useState([]);
-  /* async function handleAceito(id) {
-    const status = true;
-    const aprovado = true;
+  async function handleAceito(id) {
+    console.log(id);
     try {
-      await api.put(`/approvals/${id}`, {
-        status,
-        aprovado,
-      });
-      history.push('/admin');
+      await api.put(`/api/orders/accepts/${id}`);
+
+      toast.success('Pedido aceito');
+      history.push('/main');
     } catch (err) {
-      console.log('Falha Porra');
+      toast.error('Erro ao aceitar o pedido');
     }
-  } */
+  }
   /* function handleRecusado() {} */
   useEffect(() => {
     async function loadItens() {
@@ -61,9 +61,24 @@ export default function Orders() {
                   <td>{product.quantity}</td>
                 </tr>
               ))}
-              <td>
-                <button type="button">Aceitar</button>
-              </td>
+              {item.orderResponse.accepted ? (
+                <td>
+                  <div>
+                    <button aceito type="button" disabled>
+                      Aceito
+                    </button>
+                  </div>
+                </td>
+              ) : (
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleAceito(item.orderResponse.orderNumber)}
+                  >
+                    Aceitar
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
