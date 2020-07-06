@@ -24,8 +24,6 @@ export default function EditProfile() {
     loadUser();
   }, []);
 
-  console.log(user);
-
   async function onSubmit(data) {
     try {
       const { name, email, password, phone } = data;
@@ -43,6 +41,7 @@ export default function EditProfile() {
   function msgError(texto) {
     toast.error(texto);
   }
+  console.log(user);
 
   return (
     <Content>
@@ -63,8 +62,8 @@ export default function EditProfile() {
         <input
           ref={register}
           name="password"
-          type="password"
-          placeholder="Digite a senha"
+          type="text"
+          defaultValue={user.password}
         />
         <input
           ref={register({ minLength: 9, maxLength: 9 })}

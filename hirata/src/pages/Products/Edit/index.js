@@ -27,14 +27,13 @@ function EditProduct(props) {
     const kg = parseFloat(data.kg, 1);
     const price = parseFloat(data.price, 2);
     const stock = parseInt(data.stock, 0);
-    const photoId = idPhoto;
+
     try {
       await api.patch(`/api/products/${productId}`, {
         name,
         price,
         kg,
         stock,
-        photoId,
       });
       toast.success('Produto cadastrado com suceeso');
     } catch (err) {
@@ -45,18 +44,19 @@ function EditProduct(props) {
   async function handleChange(e) {
     const data = new FormData();
     data.append('photo', e.target.files[0]);
+
     const response = await api.post('/api/photos', data);
     const idAntigo = parseInt(products.photoId, 0);
-
     const { id, url } = response.data.photo;
 
     try {
-      await api.put(`/api/photos/${idAntigo}`, {
-        url,
+      await api.patch(`/api/photos/${idAntigo}`, {
+        id,
       });
     } catch (err) {
       console.log(err);
     }
+
     setIdPhoto(id);
     setUrlPhoto(url);
   }
