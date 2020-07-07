@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import logo from '../../../assests/img/logo.png';
-import { createUserRequest } from '../../../store/modules/auth/actions';
+
 import { Content } from './styles';
 import api from '../../../services/api';
 
@@ -14,8 +14,6 @@ export default function EditProfile() {
 
   const loading = useSelector(state => state.auth.loading);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     async function loadUser() {
       const response = await api.get(`/api/customers/${id}`);
@@ -23,16 +21,27 @@ export default function EditProfile() {
     }
     loadUser();
   }, []);
+  const emailAtual = user.email;
 
   async function onSubmit(data) {
     try {
       const { name, email, password, phone } = data;
-      await api.patch(`/api/customers/${id}`, {
-        name,
-        email,
-        password,
-        phone,
-      });
+
+      if (emailAtual === email) {
+        await api.patch(`/api/customers/${id}`, {
+          name,
+          password,
+          phone,
+        });
+      } else {
+        await api.patch(`/api/customers/${id}`, {
+          name,
+          email,
+          password,
+          phone,
+        });
+      }
+
       toast.success('Usuario alterado com sucesso');
     } catch (err) {
       toast.error('Error na alteração tente novamente');
@@ -41,7 +50,6 @@ export default function EditProfile() {
   function msgError(texto) {
     toast.error(texto);
   }
-  console.log(user);
 
   return (
     <Content>

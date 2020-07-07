@@ -8,7 +8,6 @@ import history from '../../services/history';
 export default function Orders() {
   const [itens, setItens] = useState([]);
   async function handleAceito(id) {
-    console.log(id);
     try {
       await api.put(`/api/orders/accepts/${id}`);
 
