@@ -6,7 +6,6 @@ import logo from '../../assests/img/logo.png';
 import history from '../../services/history';
 import { createUserRequest } from '../../store/modules/auth/actions';
 
-
 export default function Register() {
   const { register, handleSubmit, errors } = useForm();
 

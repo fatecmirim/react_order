@@ -32,6 +32,9 @@ export default function HeaderAdm() {
             <Link to="/">
               <li onClick={handleSignOut}>SAIR</li>
             </Link>
+            <Link to="/relatorio">
+              <li>RELATÓRIO</li>
+            </Link>
           </ul>
         </nav>
       </Content>

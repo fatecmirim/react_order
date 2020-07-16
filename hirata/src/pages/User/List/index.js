@@ -14,7 +14,6 @@ export default function UserList() {
     loadUsers();
   }, []);
 
-  console.log(users);
 
   return (
     <Container>

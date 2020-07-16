@@ -11,6 +11,7 @@ import EditProduct from '../pages/Products/Edit';
 import Orders from '../pages/Order';
 import EditProfile from '../pages/Perfil/Edit';
 import UserList from '../pages/User/List';
+import Relatorio from '../pages/Relatorio';
 
 export default function Routes() {
   return (
@@ -34,6 +35,7 @@ export default function Routes() {
       <Route path="/orders" exact component={Orders} isPrivate />
       <Route path="/edit-profile" exact component={EditProfile} isPrivate />
       <Route path="/list-users" exact component={UserList} isPrivate />
+      <Route path="/relatorio" exact component={Relatorio} isPrivate />
     </Switch>
   );
 }
